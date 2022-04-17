@@ -45,9 +45,6 @@ def home():
         for id in range(1, 200):
             cafe = Cafe.query.filter_by(id=id).first()
             if cafe != None:
-
-
-                print(id_list)
                 id_list += [id]
             else:
                 testing = False
