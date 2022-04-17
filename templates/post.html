@@ -1,0 +1,29 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+{% include "header.html" %}
+
+
+
+<body style="background-image: url(static/img/cafes_wifi_background.png">
+
+
+
+                {% if form %}
+                <form class="form", method="POST", action='/new_post'>
+                    {{ wtf.quick_form(form, action='/new_post', novalidate=True)   }}
+                </form>
+                {% endif %}
+
+
+
+
+
+
+
+</body>
+
+
+{% endblock %}

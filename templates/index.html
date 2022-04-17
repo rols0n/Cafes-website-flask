@@ -1,0 +1,104 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+{% include "header.html" %}
+
+
+<body style="background-image: url(static/img/cafes_wifi_background.png" class="index_body">
+            {% macro cafes(ids)  -%}
+
+                {% for data in range(1, id_lists + 1) %}
+
+                {% set cafe = Cafe.query.filter_by(id=data).first() %}
+                {% if cafe.name != None %}
+                    <br>
+                    <div class="col-lg-3 d-flex" style="opacity: 100%" id="cafes-column">
+                        <div class="card" style="width: auto; height: auto; background-color: rgba(0, 0, 0, 0.2);">
+                            <img src="{{ cafe.img_url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h1 class="card-title">{{ cafe.name }}</h1>
+                                <p class="card-location">Located in {{ cafe.location }}</p>
+
+                                {% if cafe.has_sockets > 0 %}
+                                <p> Has sockets?: Yes </p>
+                                {% elif cafe.has_sockets < 1 %}
+                                <p> Has sockets?: No </p>
+                                {% endif %}
+
+                                {% if cafe.has_toilet > 0 %}
+                                <p> Has toilet?: Yes</p>
+                                {% elif cafe.has_toilet < 1 %}
+                                <p> Has toilet?: No</p>
+                                {% endif %}
+
+                                {% if cafe.has_wifi > 0 %}
+                                <p> Has wifi?: Yes</p>
+                                {% elif cafe.has_wifi < 1 %}
+                                <p> Has wifi?: No</p>
+                                {% endif %}
+
+                                {% if cafe.can_take_calls > 0 %}
+                                <p> Can u take calls there?: Yes</p>
+                                {% elif cafe.can_take_calls < 1 %}
+                                <p> Can u take calls there?: No</p>
+                                {% endif %}
+
+                                <p> Seats: {{ cafe.seats }}</p>
+                                <p> Coffe price: {{ cafe.coffee_price }}</p>
+                                <br>
+                                <a href="{{ cafe.map_url }}" class="btn btn-secondary btn-lg btn-block" style="font-size: 2rem; font-weight: 100">Google-maps url</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+                        {% endif %}
+                    {% endfor %}
+
+            {%- endmacro %}
+
+            <div class="container">
+                <div class="row">
+
+                    {{ cafes() }}
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous">
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous">
+        </script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous">
+        </script>
+
+</body>
+
+{% endblock %}
